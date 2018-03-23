@@ -1,0 +1,10 @@
+@import './src/assets/styles/variables';
+@import './src/assets/styles/mixins';
+@import './node_modules/foundation-sites/scss/foundation';
+
+@include foundation-everything;
+@include generate-color-classes;
+@include generate-distance-clases;
+
+@import './src/assets/styles/partials/_common';
+@import './src/assets/styles/partials/_transitions';

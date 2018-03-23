@@ -1,0 +1,31 @@
+.button {
+    &-hiq {
+        padding: 1rem 2rem !important;
+        font-size: 1.5rem !important;
+        color: $black;
+        background: $pink;
+        box-shadow: 4px 4px 0px $pink-dark;
+        &:hover, :focus{
+            background: $pink-dark !important;
+        }
+    }
+}
+
+input.hiq-style {
+    &:not([type="range"]){
+        @include input;
+    }
+    &[type="checkbox"] {
+        @include checkbox;
+    }
+}
+
+select.hiq-style {
+    &[multiple] {
+        @include select;
+    }
+}
+
+textarea.hiq-style {
+    @include textarea;
+}

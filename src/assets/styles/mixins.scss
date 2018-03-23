@@ -1,0 +1,170 @@
+@import 'variables';
+@import './node_modules/foundation-sites/scss/foundation';
+
+@mixin input($color: $gray-dark) {
+    height: 3rem;
+    border: none;
+    border-bottom: $border;
+    background-color: $white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-medium;
+    font-size: #{rem-calc(18)};
+    color: $color;
+    padding: 0 0 0 1rem;
+
+    &:focus {
+        outline: none;
+        box-shadow:none;
+        transition:none;
+        border-bottom: $border;
+        border-bottom-color: $color;
+
+        @content;
+    }
+
+    &.invalid {
+        border-bottom-color: $red-dark;
+    }
+}
+
+@mixin textarea($color: $gray-dark) {
+    height: auto;
+
+    border: $border;
+    background-color: $white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-medium;
+    font-size: #{rem-calc(18)};
+    color: $color;
+    padding: 0 0 0 1rem;
+
+    &:focus {
+        outline: none;
+        box-shadow:none;
+        transition:none;
+        border-color: $color;
+
+        @content;
+    }
+
+    &.invalid {
+        border-color: $red-dark;
+    }
+}
+
+@mixin select($color: $gray-dark) {
+    min-height: 10rem;
+    padding: 0;
+    margin: 0;
+    border: $border;
+    background-color: $white;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    font-family: $font-family-roboto;
+    font-weight: $font-weight-medium;
+    font-size: #{rem-calc(18)};
+    color: $color;
+
+    > option {
+        padding: .5rem 0;
+        &:checked {
+            background: $pink linear-gradient(0deg, $pink 0%, $pink 100%);
+        }
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow:none;
+        transition:none;
+        border-color: $color;
+
+        @content;
+    }
+
+    &.invalid {
+        border-color: $red-dark;
+    }
+}
+
+@mixin checkbox($color: $green, $shadow: $green-dark) {
+    + label {
+        border: $border;
+        border-color: transparent;
+        margin-left: 0;
+        margin-right: 0;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+        position: relative;
+        border-radius: 0;
+        background: $color;
+        box-shadow: 4px 4px $green-dark;
+        transition: border-color .2s ease-in-out;
+       // @include transition(background-color);
+        cursor: pointer;
+    }
+    &:checked {
+        & + label::after {
+            content: '✔';
+            font-size: 1.5rem;
+            color: $white;
+            background-color: transparent;
+
+            display: block;
+            position: relative;
+            text-align: center;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+    }
+
+    &.invalid + label {
+        border-color: $red-dark;
+    }
+}
+
+@mixin generate-color-classes {
+    @each $c-name, $color in $colors {
+        .c\:#{$c-name}{
+            color: $color;
+        }
+        .bg\:#{$c-name}{
+            background-color: $color;
+        }
+    }
+    .c\:white {
+        color: $white;
+    }
+    .bg\:white {
+        background-color: $white;
+    }
+}
+
+@mixin generate-distance-clases {
+    $directions: (t: '-top', b: '-bottom', l: '-left', r: '-right', a: '');
+
+    @each $breakpoint in $breakpoint-classes {
+        $breakpointName: \@#{$breakpoint};
+        @if $breakpoint == small {
+            $breakpointName: '';
+        }
+        @include breakpoint($breakpoint){
+            @for $i from 0 through 10 {
+                @each $dirName, $dirVal in $directions
+                {
+                    .p-#{$dirName}\:#{$i}#{$breakpointName} {
+                        padding#{$dirVal}: #{$i}rem;
+                    }
+                    .m-#{$dirName}\:#{$i}#{$breakpointName} {
+                        margin#{$dirVal}: #{$i}rem;
+                    }
+                }       
+            }
+        }
+    }
+}

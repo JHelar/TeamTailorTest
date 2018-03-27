@@ -15,7 +15,8 @@ export default {
             value: 0,
             maxValue: 0,
             runId: -1,
-            running: false
+            running: false,
+            timing: 125
         }
     },
     created(){
@@ -40,7 +41,7 @@ export default {
             console.log(this.maxValue)
             this.runId = setInterval(() => {
                 this.value += this.baseIncrement - (this.baseIncrement * (this.value / this.maxValue));
-            }, 250)
+            }, this.timing)
         },
         stop(){
             this.value = this.maxValue;

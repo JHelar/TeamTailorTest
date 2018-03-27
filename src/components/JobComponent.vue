@@ -1,7 +1,8 @@
 <template>
   <transition name="placehold" mode="out-in">
-      <main key="form" v-if="isInitialized">
+      <main key="form" v-if="isInitialized" class="grid-container">
             <h1>{{ attributes.title }}</h1>
+            <div v-html="attributes.body"></div>
             <transition name="questions" mode="out-in">
                 <div class="questions" :class="{sending: sending}" v-if="!sent" key="questions">
                     <JobQuestion v-for="question in questions" :key="question.key" :question="question"></JobQuestion>
@@ -9,7 +10,7 @@
                         <input type="text" v-model.trim="firstName.value" placeholder="Förnamn" class="hiq-style m-b:1" :class="{invalid:firstName.isDirty&&!firstName.isValid}">
                         <input type="text" v-model.trim="lastName.value" placeholder="Efternamn" class="hiq-style m-b:1" :class="{invalid:lastName.isDirty&&!lastName.isValid}">
                         <input type="email" v-model.trim="email.value" placeholder="Email" class="hiq-style m-b:1" :class="{invalid:email.isDirty&&!email.isValid}">
-                        <button @click="send" class="button-hiq">Skicka</button>
+                        <button @click="send" class="button-hiq">{{ attributes['apply-button-text']||'Skicka' }}</button>
                     </div>
                 </div>
                 <div key="sent" v-else>
@@ -17,7 +18,7 @@
                 </div>
             </transition>
       </main>
-      <main key="placeholder" class="loading-placeholder" v-else>
+      <main key="placeholder" class="loading-placeholder grid-container" v-else>
           <span class="placeholder-text m-b:2"></span>
           <span class="placeholder-input m-b:1"></span>
           <span class="placeholder-textarea m-b:1"></span>

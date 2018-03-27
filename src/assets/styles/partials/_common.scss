@@ -12,11 +12,15 @@
 }
 
 input.hiq-style {
-    &:not([type="range"]){
+    &:not([type="range"]),
+    &:not([type="checkbox"]){
         @include input;
     }
     &[type="checkbox"] {
         @include checkbox;
+    }
+    &[type="radio"] {
+        @include radiobutton;
     }
 }
 

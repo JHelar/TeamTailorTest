@@ -90,6 +90,64 @@
     }
 }
 
+@mixin radiobutton($color: $green, $shadow: $green-dark) {
+    $size: 36px;
+
+    ~ .name {
+        display: inline-flex;
+        height: 100%;
+        align-items: center;
+        color: $white;
+        font-weight: 600;
+        font-size: 1.05rem;
+    }
+
+    + .checkmark {
+        display: inline-block;
+        position: relative;
+        width: $size;
+        height: $size;
+        background-color: $color;
+        box-shadow: 4px 4px $shadow;
+        border-radius: 50%;
+        border: $border;
+        border-color: transparent;
+
+        transition: border-color .2s linear;
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+
+            display: block;
+            width: $size - $size * 0.2;
+            height: $size - $size * 0.2;
+
+            background-color: rgba($pink, .25);
+            transition: background-color .2s ease-in-out;
+            border-radius: 50%;
+        }
+    }
+    &:hover,
+    &:focus {
+        + .checkmark {
+            &::after {
+                background-color: rgba($pink, .5);
+            }
+        }
+    }
+    &:checked + .checkmark::after {
+        background-color: $pink;
+    }
+
+    &.invalid + .checkmark {
+        border-color: $red-dark;
+    }
+}
+
 @mixin checkbox($color: $green, $shadow: $green-dark) {
     + label {
         border: $border;

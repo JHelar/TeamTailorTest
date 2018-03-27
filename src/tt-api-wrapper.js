@@ -59,7 +59,7 @@ const jobsEndpoint = (() => {
         params.push(_.forOwnMap(filters, makeFilterParam))
 
         const url = makeUrl(`${BASE_URL}/jobs?`)(params);
-        return GETRequest(url);
+        return GETRequest(url).then(val => { console.log(val); return Promise.resolve(val)});
     }
 
     const show = id => GETRequest(`${BASE_URL}/jobs/${id}`);

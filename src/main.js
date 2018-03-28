@@ -16,7 +16,10 @@ const app = new Vue({
     loading: false
   },
   components: { App, Loader },
-  template: '<div><App/><Loader :active="loading"/></div>',
+  template: `<div>
+          <App/>
+          <Loader :active="loading"/>
+        </div>`,
   router
 })
 

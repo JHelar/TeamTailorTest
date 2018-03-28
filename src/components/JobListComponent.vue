@@ -1,7 +1,7 @@
 <template>
     <main class="grid-container">
         <div class="c:white" v-for="location in listJobs" :key="location.id">
-            <h1>{{ location.city }}</h1>
+            <h2>{{ location.city }}</h2>
             <div class="grid-y">
                 <router-link v-for="job in location.jobs" :key="job.id" :to="{ name: 'job', params: {id: job.id}}" class="button-hiq m-b:1">{{ job.title }}</router-link>
             </div>

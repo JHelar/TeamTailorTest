@@ -1,7 +1,12 @@
 <template>
-  <transition name="main" mode="out-in">
-    <router-view></router-view>
-  </transition>
+  <div>
+    <header>
+      <h1 class="text-center">Teamtailor integrationstest</h1>
+    </header>
+    <transition name="main" mode="out-in">
+      <router-view></router-view>
+    </transition>
+  </div>
 </template>
 
 <script>

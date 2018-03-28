@@ -1,7 +1,7 @@
 <template>
   <transition name="placehold" mode="out-in">
       <main key="form" v-if="isInitialized" class="grid-container">
-            <h1>{{ attributes.title }}</h1>
+            <h2>{{ attributes.title }}</h2>
             <div v-html="attributes.body"></div>
             <transition name="questions" mode="out-in">
                 <div class="questions" :class="{sending: sending}" v-if="!sent" key="questions">

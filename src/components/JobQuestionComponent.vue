@@ -21,7 +21,7 @@
       </fieldset>
       <div class="input-field" v-else-if="question.attributes['question-type'] === 'Range'">
           <label class="c:white">{{ question.attributes.title }}</label>
-          <range-slider class="hiq-style" :min="question.attributes['start-with']" :max="question.attributes['end-with']" v-model="question.value" :class="{invalid:question.isDirty && !question.isValid}"></range-slider>
+          <RangeSlider class="hiq-style" :min="question.attributes['start-with']" :max="question.attributes['end-with']" v-model="question.value" :class="{invalid:question.isDirty && !question.isValid}"></RangeSlider>
       </div>
       <div class="input-field" v-else-if="question.attributes['question-type'] === 'Choice'">
           <label class="c:white" :for="question.id">{{ question.attributes.title }}</label>
@@ -42,8 +42,7 @@
   </div>
 </template>
 <script>
-import RangeSlider from "vue-range-slider";
-import "vue-range-slider/dist/vue-range-slider.css";
+import RangeSlider from "./RangeSlider/RangeSliderComponent";
 
 export default {
   name: "JobQuestion",
